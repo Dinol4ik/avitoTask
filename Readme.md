@@ -33,19 +33,19 @@
 ## Handlers
 
 ### URL `/add-segment` Method `POST`
-
+    
     {
     "PercentUsers":0.8,
     "name":"avito_message"
     }
-
+    
 ### reply
 
     {
 	"name": "avito_message"
     }
 
-### `/delete-segment` Method `DELETE`
+### URL `/delete-segment` Method `DELETE`
 
     {
     "name":"avito_message"
