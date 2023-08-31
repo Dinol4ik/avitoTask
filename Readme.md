@@ -32,7 +32,7 @@
 
 ## Handlers
 
-### URL /add-segment Method POST
+### URL `/add-segment` Method `POST`
 
     {
     "PercentUsers":0.8,
@@ -45,7 +45,7 @@
 	"name": "avito_message"
     }
 
-### /delete-segment Method DELETE
+### `/delete-segment` Method `DELETE`
 
     {
     "name":"avito_message"
@@ -57,7 +57,7 @@
 	"name": "avito_message"
     }
 
-## URL /add-segment-for-user Method POST
+## URL `/add-segment-for-user` Method `POST`
 
     {
 	"userId":1,
@@ -74,7 +74,7 @@
     ]
     }
 
-### URL /get-user-segments Method GET
+### URL `/get-user-segments` Method `GET``
 
     {
 	"userId":1
@@ -101,7 +101,7 @@
 	    }
     }
 
-## URL /delete-user-segments Method PUT
+## URL `/delete-user-segments` Method `PUT`
 
     {
 	"userId":1,
@@ -112,7 +112,7 @@
 	"name": "avito_message"
     }
 
-### URL /get-user-history Method POST
+### URL `/get-user-history` Method `POST`
 
     {
 	"userId":1,
