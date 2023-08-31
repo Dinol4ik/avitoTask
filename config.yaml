@@ -1,0 +1,9 @@
+logger:
+  level: -1
+
+postgres:
+  host: '127.0.0.1'
+  user: 'dinol'
+  dbname: 'avitoDB'
+  password: 'postgres'
+
