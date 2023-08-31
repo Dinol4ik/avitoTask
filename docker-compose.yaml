@@ -13,18 +13,14 @@ services:
     depends_on:
       - avito-db
     build: ./migration
-    image: avito/migrations
     container_name: migrations
     restart: on-failure
-    ports:
-      - 9000:9000
 
   server:
     depends_on:
       - avito-db
     restart: on-failure
     build: .
-    image: avito/experement
     container_name: avito-server
 
     ports:
