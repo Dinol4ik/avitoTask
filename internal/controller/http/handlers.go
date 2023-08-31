@@ -20,6 +20,11 @@ func (s *Server) DeleteSegment(ctx *fiber.Ctx) error {
 		return err
 	}
 	err = s.experimentUC.DeleteSegment(ctx, paramsSegment)
+	if err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "не удалось удалить сегмент",
+		})
+	}
 	return ctx.Status(fiber.StatusOK).JSON(
 		response.DeleteSegment{
 			Name: paramsSegment.Name,
@@ -48,6 +53,11 @@ func (s *Server) AddSegment(ctx *fiber.Ctx) error {
 		return err
 	}
 	err = s.experimentUC.AddSegment(ctx, paramsSegment)
+	if err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "ошибка добавление сегмента",
+		})
+	}
 	return ctx.Status(fiber.StatusOK).JSON(
 		response.AddSegment{
 			Name: paramsSegment.Name,
@@ -61,7 +71,9 @@ func (s *Server) AddSegmentsForUser(ctx *fiber.Ctx) error {
 	}
 	err = s.experimentUC.AddSegmentsForUser(ctx, segmentParams)
 	if err != nil {
-		return ctx.SendStatus(fiber.StatusBadRequest)
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "возможно вы пытаетесь записать несуществующий сегмент",
+		})
 	}
 	return ctx.Status(fiber.StatusOK).JSON(
 		response.AddSegmentsForUser{
@@ -77,7 +89,9 @@ func (s *Server) GetUserSegments(ctx *fiber.Ctx) error {
 	}
 	result, err := s.experimentUC.GetUserSegments(ctx, userId.UserId)
 	if err != nil {
-		return err
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "такого юзера не существует",
+		})
 	}
 	return ctx.Status(fiber.StatusOK).JSON(
 		response.GetUserSegments{
@@ -93,7 +107,9 @@ func (s *Server) DeleteUserSegments(ctx *fiber.Ctx) error {
 	}
 	err = s.experimentUC.DeleteUserSegments(ctx, segmentParams)
 	if err != nil {
-		return ctx.SendStatus(fiber.StatusBadRequest)
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Возможно один или несколько сегментов не были удалены",
+		})
 	}
 	return ctx.Status(fiber.StatusOK).JSON(
 		response.DeleteUserSegments{
@@ -108,7 +124,9 @@ func (s *Server) CreateCsv(ctx *fiber.Ctx) error {
 	}
 	filename, err := s.experimentUC.CsvCreate(ctx, csvParams)
 	if err != nil {
-		return ctx.SendStatus(fiber.StatusBadRequest)
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Не верно указаны даты, попробуйте xxxx-xx-xx",
+		})
 	}
 	url := fmt.Sprintf("http://localhost:8080/save-history/%s", filename)
 	return ctx.Status(fiber.StatusOK).JSON(

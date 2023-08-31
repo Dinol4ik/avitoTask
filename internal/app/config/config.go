@@ -36,8 +36,8 @@ func LoadConfig() (*Config, error) {
 	viper.SetDefault("logger.level", &defaultLevel)
 
 	viper.SetDefault("postgres.host", "127.0.0.1")
-	viper.SetDefault("postgres.dbname", "avitoDB")
-	viper.SetDefault("postgres.user", "dinol")
+	viper.SetDefault("postgres.dbname", "postgres")
+	viper.SetDefault("postgres.user", "postgres")
 	viper.SetDefault("postgres.password", "postgres")
 
 	viper.SetDefault("http_server.address", "0.0.0.0:8080")

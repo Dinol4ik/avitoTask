@@ -3,7 +3,7 @@
 CREATE TABLE segment
 (
     id SERIAL NOT NULL PRIMARY KEY,
-    name VARCHAR(255),
+    name VARCHAR(255) UNIQUE,
     is_removed BOOLEAN DEFAULT false
 );
 

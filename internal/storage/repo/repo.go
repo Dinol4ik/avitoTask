@@ -119,7 +119,7 @@ const csvCreate = `select u.name as user_name,s.name as segment_name,created_at,
                 from user_segment
                 inner join public.segment s on s.id = user_segment.segment_id
                 inner join public."user" u on u.id = user_segment.user_id
-                WHERE user_id = $1 and created_at > $2 and created_at < $3`
+                WHERE user_id = $1 and created_at >= $2 and created_at <= $3`
 
 func (r *Repo) CsvCreate(ctx *fiber.Ctx, dateStart string, dateEnd string, userId int) ([]models.Csv, error) {
 	var selectRows []models.Csv

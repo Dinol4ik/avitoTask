@@ -14,8 +14,7 @@ FROM alpine:3.18
 
 WORKDIR /
 
-COPY config.yml ./
-COPY /migrations /migrations
+COPY config.yaml ./
 
 COPY --from=builder /server /server
 

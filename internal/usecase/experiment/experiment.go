@@ -41,10 +41,6 @@ func (uc *UseCase) AddSegment(ctx *fiber.Ctx, segment models.Segment) error {
 	if err != nil {
 		return err
 	}
-	err = uc.repo.AddSegment(ctx, segment.Name)
-	if err != nil {
-		return err
-	}
 	for _, segmentName := range result {
 		err = uc.repo.AddSegmentsForUser(ctx, segment.Name, segmentName.Id)
 		if err != nil {
