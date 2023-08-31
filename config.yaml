@@ -1,9 +1,0 @@
-logger:
-  level: -1
-
-postgres:
-  host: 'avitoDB'
-  user: 'dinol'
-  dbname: 'avitoDB'
-  password: 'postgres'
-
